@@ -1,4 +1,4 @@
-/* Buat CV Generator: semua berjalan di browser. Tidak ada data yang dikirim ke server. */
+/* Buat Curriculum Vitae - CV: semua berjalan di browser. Tidak ada data yang dikirim ke server. */
 (() => {
   'use strict';
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
