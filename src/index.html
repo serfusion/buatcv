@@ -4,171 +4,192 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Curriculum Vitae · Buat CV gratis</title>
-<meta name="description" content="Buat CV gratis di browser: isi data, pilih template, lihat pratinjau A4, lalu simpan sebagai PDF yang terbaca ATS atau PNG. Data tidak dikirim ke server.">
-<meta name="theme-color" content="#fafafa">
+<meta name="description" content="Buat CV gratis di browser: 40 template A4, pratinjau langsung, unduh PDF yang terbaca ATS atau PNG. Tanpa daftar, data tidak dikirim ke server.">
+<meta name="theme-color" content="#f7f4ee">
 <link rel="canonical" href="https://superfal-dev.com/tools/buatcvgratis/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Ccircle cx='12' cy='12' r='2.5'/%3E%3Cpath d='M8 18a4 4 0 0 1 8 0'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231f3a8a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Ccircle cx='12' cy='12' r='2.5'/%3E%3Cpath d='M8 18a4 4 0 0 1 8 0'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="cv.css">
 </head>
 <body>
 <header class="bar">
-  <a class="merek" href="./" aria-label="Curriculum Vitae">
+  <a class="merek" href="./">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><circle cx="12" cy="12" r="2.5"/><path d="M8 18a4 4 0 0 1 8 0"/></svg>
-    <span><b>Curriculum Vitae</b></span>
+    <span>Curriculum Vitae</span>
   </a>
-  <ol class="langkah" aria-label="Langkah">
-    <li><span>1</span><i data-u="lk1">Isi data</i></li>
-    <li><span>2</span><i data-u="lk2">Template</i></li>
-    <li><span>3</span><i data-u="lk3">Unduh</i></li>
-  </ol>
-  <div class="bar-ka">
-    <div class="seg" role="group" aria-label="Bahasa tampilan">
-      <button type="button" data-ui="id" aria-pressed="true">ID</button><button type="button" data-ui="en" aria-pressed="false">EN</button>
-    </div>
-    <a class="kembali" href="https://superfal-dev.com/#innovation" data-u="kembali">superfal-dev.com</a>
-  </div>
+  <nav class="bar-nav">
+    <a href="#panduan" data-u="panduan">Panduan</a>
+    <a href="#faq" data-u="faq">FAQ</a>
+    <a href="https://superfal-dev.com/#innovation" class="jauh">superfal-dev.com</a>
+    <label class="bahasa"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>
+      <select id="ui-lang" aria-label="Bahasa / Language"><option value="id">Indonesia</option><option value="en">English</option></select></label>
+  </nav>
 </header>
 
 <main class="kerja">
   <section class="editor" aria-label="Editor">
     <div class="tabs" role="tablist">
-      <button type="button" role="tab" id="tab-data" aria-controls="p-data" aria-selected="true" data-u="tData">Isi data</button>
-      <button type="button" role="tab" id="tab-tpl" aria-controls="p-tpl" aria-selected="false" data-u="tTpl">Template &amp; gaya</button>
+      <button type="button" role="tab" id="tab-data" aria-controls="p-data" aria-selected="true"><i>1</i><span data-u="tData">Isi data</span></button>
+      <button type="button" role="tab" id="tab-tpl" aria-controls="p-tpl" aria-selected="false"><i>2</i><span data-u="tTpl">Template</span></button>
     </div>
 
     <form id="p-data" role="tabpanel" aria-labelledby="tab-data" class="panel" autocomplete="on" novalidate>
-      <fieldset>
-        <legend data-u="sDiri">Data diri</legend>
-        <div class="foto-baris">
-          <div class="foto-prev" id="foto-prev" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
-          <div class="foto-aksi">
-            <label class="btn kecil"><input type="file" id="foto" accept="image/png,image/jpeg,image/webp" hidden><span data-u="fPilih">Pilih foto</span></label>
-            <button type="button" class="btn kecil hantu" id="foto-hapus" hidden data-u="fHapus">Hapus foto</button>
-            <small data-u="fKet">Opsional. JPG, PNG atau WebP, dipotong persegi.</small>
+      <div class="acc">
+        <button type="button" class="acc-h" aria-expanded="true"><span data-u="sDiri">Data diri</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
+        <div class="acc-isi">
+          <div class="foto-baris">
+            <div class="foto-prev" id="foto-prev" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
+            <div class="foto-aksi">
+              <div class="foto-tombol">
+                <label class="btn kecil"><input type="file" id="foto" accept="image/png,image/jpeg,image/webp" hidden><span id="foto-pilih-t">Pilih foto</span></label>
+                <button type="button" class="btn kecil" id="foto-atur" hidden data-u="fAtur">Atur</button>
+                <button type="button" class="btn kecil hantu" id="foto-hapus" hidden data-u="fHapus">Hapus</button>
+              </div>
+              <small data-u="fKet">Opsional. JPG, PNG atau WebP.</small>
+            </div>
+          </div>
+          <label><span data-u="nama">Nama lengkap</span><input name="nama" autocomplete="name" maxlength="80" data-ph="phNama"></label>
+          <label><span data-u="jabatan">Jabatan atau profesi</span><input name="jabatan" autocomplete="organization-title" maxlength="80" data-ph="phJabatan"></label>
+          <div class="grid2">
+            <label><span>Email</span><input name="email" type="email" autocomplete="email" maxlength="100" placeholder="nama@email.com"></label>
+            <label><span data-u="telepon">Telepon</span><input name="telepon" type="tel" autocomplete="tel" maxlength="40" placeholder="0812 3456 7890"></label>
+          </div>
+          <label><span data-u="lokasi">Domisili</span><input name="lokasi" autocomplete="address-level2" maxlength="80" data-ph="phLokasi"></label>
+          <div class="lbl" id="lahir-l" data-u="lahir">Tanggal lahir</div>
+          <div class="lahir" role="group" aria-labelledby="lahir-l">
+            <select id="lahir-t" aria-label="Tanggal"><option value="">Tgl</option></select>
+            <select id="lahir-b" aria-label="Bulan"></select>
+            <input id="lahir-y" inputmode="numeric" maxlength="4" data-ph="tahun" aria-label="Tahun">
+          </div>
+          <label><span data-u="ringkasan">Ringkasan diri</span><textarea name="ringkasan" rows="4" maxlength="1500" data-ph="phRingkasan"></textarea></label>
+        </div>
+      </div>
+
+      <div class="acc">
+        <button type="button" class="acc-h" aria-expanded="true"><span data-u="sPeng">Pengalaman kerja</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
+        <div class="acc-isi"><div class="daftar" data-daftar="pengalaman"></div>
+          <button type="button" class="btn tambah" data-tambah="pengalaman"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span data-u="tbPeng">Tambah pengalaman</span></button></div>
+      </div>
+      <div class="acc">
+        <button type="button" class="acc-h" aria-expanded="true"><span data-u="sPend">Pendidikan</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
+        <div class="acc-isi"><div class="daftar" data-daftar="pendidikan"></div>
+          <button type="button" class="btn tambah" data-tambah="pendidikan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span data-u="tbPend">Tambah pendidikan</span></button></div>
+      </div>
+      <div class="acc">
+        <button type="button" class="acc-h" aria-expanded="true"><span data-u="sKeah">Keahlian</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
+        <div class="acc-isi">
+          <label><span class="sr" data-u="sKeah">Keahlian</span><textarea name="keahlian" rows="4" maxlength="1500" data-ph="phKeahlian"></textarea><small data-u="keahlianKet">Tekan Enter untuk keahlian berikutnya.</small></label>
+          <label><span data-u="sBahasa">Bahasa</span><textarea name="bahasa" rows="2" maxlength="500" data-ph="phBahasa"></textarea></label>
+          <label><span data-u="sSertif">Sertifikat &amp; pelatihan</span><textarea name="sertifikat" rows="2" maxlength="1500" data-ph="phSertif"></textarea></label>
+        </div>
+      </div>
+      <div class="acc">
+        <button type="button" class="acc-h" aria-expanded="false"><span><span data-u="sProy">Proyek</span> <small data-u="ops">opsional</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
+        <div class="acc-isi" hidden><div class="daftar" data-daftar="proyek"></div>
+          <button type="button" class="btn tambah" data-tambah="proyek"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span data-u="tbProy">Tambah proyek</span></button></div>
+      </div>
+      <div class="acc">
+        <button type="button" class="acc-h" aria-expanded="false"><span><span data-u="sLain">Bagian lain</span> <small data-u="ops">opsional</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
+        <div class="acc-isi" hidden><p class="ket" data-u="lainKet">Misalnya Organisasi, Penghargaan, atau Publikasi.</p><div class="daftar" data-daftar="lainnya"></div>
+          <button type="button" class="btn tambah" data-tambah="lainnya"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span data-u="tbLain">Tambah bagian</span></button></div>
+      </div>
+      <div class="acc">
+        <button type="button" class="acc-h" aria-expanded="false"><span><span data-u="sTaut">Tautan</span> <small data-u="ops">opsional</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
+        <div class="acc-isi" hidden>
+          <label><span>LinkedIn</span><div class="awalan"><em>linkedin.com/in/</em><input name="linkedin" maxlength="100" spellcheck="false" autocapitalize="off"></div></label>
+          <label><span>GitHub</span><div class="awalan"><em>github.com/</em><input name="github" maxlength="60" spellcheck="false" autocapitalize="off"></div></label>
+          <label><span data-u="situs">Situs / portofolio</span><div class="awalan"><em>https://</em><input name="situs" maxlength="200" spellcheck="false" autocapitalize="off"></div></label>
+          <div class="grid2">
+            <label><span>Instagram</span><div class="awalan"><em>@</em><input name="instagram" maxlength="40" spellcheck="false" autocapitalize="off"></div></label>
+            <label><span>X / Twitter</span><div class="awalan"><em>@</em><input name="x" maxlength="40" spellcheck="false" autocapitalize="off"></div></label>
           </div>
         </div>
-        <div class="grid2">
-          <label><span data-u="nama">Nama lengkap</span><input name="nama" autocomplete="name" maxlength="80"></label>
-          <label><span data-u="jabatan">Jabatan / profesi</span><input name="jabatan" autocomplete="organization-title" maxlength="80"></label>
-          <label><span>Email</span><input name="email" type="email" autocomplete="email" maxlength="100"></label>
-          <label><span data-u="telepon">Telepon</span><input name="telepon" type="tel" autocomplete="tel" maxlength="40"></label>
-          <label class="pen"><span data-u="lokasi">Domisili</span><input name="lokasi" autocomplete="address-level2" maxlength="80"></label>
-        </div>
-        <label><span data-u="ringkasan">Ringkasan diri</span><textarea name="ringkasan" rows="4" maxlength="1200"></textarea></label>
-      </fieldset>
-
-      <fieldset>
-        <legend data-u="sPeng">Pengalaman kerja</legend>
-        <div class="daftar" data-daftar="pengalaman"></div>
-        <button type="button" class="btn tambah" data-tambah="pengalaman"><span>+</span><i data-u="tbPeng">Tambah pengalaman</i></button>
-      </fieldset>
-
-      <fieldset>
-        <legend data-u="sPend">Pendidikan</legend>
-        <div class="daftar" data-daftar="pendidikan"></div>
-        <button type="button" class="btn tambah" data-tambah="pendidikan"><span>+</span><i data-u="tbPend">Tambah pendidikan</i></button>
-      </fieldset>
-
-      <fieldset>
-        <legend data-u="sKeah">Keahlian</legend>
-        <label><span data-u="keahlianKet">Satu keahlian per baris</span><textarea name="keahlian" rows="4" maxlength="1500"></textarea></label>
-        <div class="grid2">
-          <label><span data-u="bahasaKet">Bahasa (satu per baris)</span><textarea name="bahasa" rows="3" maxlength="400"></textarea></label>
-          <label><span data-u="sertifKet">Sertifikat / pelatihan (satu per baris)</span><textarea name="sertifikat" rows="3" maxlength="1200"></textarea></label>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend><span data-u="sProy">Proyek</span> <small data-u="ops">(opsional)</small></legend>
-        <div class="daftar" data-daftar="proyek"></div>
-        <button type="button" class="btn tambah" data-tambah="proyek"><span>+</span><i data-u="tbProy">Tambah proyek</i></button>
-      </fieldset>
-
-      <fieldset>
-        <legend><span data-u="sTaut">Tautan</span> <small data-u="ops">(opsional)</small></legend>
-        <div class="grid2">
-          <label><span>LinkedIn</span><div class="awalan"><em>linkedin.com/in/</em><input name="linkedin" maxlength="100" spellcheck="false"></div></label>
-          <label><span>GitHub</span><div class="awalan"><em>github.com/</em><input name="github" maxlength="60" spellcheck="false"></div></label>
-          <label class="pen"><span data-u="situs">Situs / portofolio</span><input name="situs" type="url" placeholder="https://" maxlength="200" spellcheck="false"></label>
-        </div>
-      </fieldset>
-      <button type="button" class="btn utama lebar" id="ke-tpl" data-u="lanjut">Lanjut pilih template</button>
+      </div>
+      <div class="panel-kaki"><button type="button" class="btn utama lebar" id="ke-tpl"><span data-u="lanjut">Lanjut pilih template</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
     </form>
 
     <div id="p-tpl" role="tabpanel" aria-labelledby="tab-tpl" class="panel" hidden>
-      <div class="filter" role="group" aria-label="Kategori">
-        <button type="button" data-f="semua" aria-pressed="true" data-u="fSemua">Semua</button>
-        <button type="button" data-f="formal" aria-pressed="false">Formal</button>
-        <button type="button" data-f="warna" aria-pressed="false" data-u="fWarna">Berwarna</button>
-        <button type="button" data-f="kreatif" aria-pressed="false" data-u="fKreatif">Kreatif</button>
-        <button type="button" data-f="gelap" aria-pressed="false" data-u="fGelap">Gelap</button>
-      </div>
-      <div class="galeri" id="galeri"></div>
       <div class="gaya">
-        <div class="baris-gaya">
-          <span data-u="gWarna">Warna aksen</span>
-          <div class="swatch" id="swatch"></div>
+        <div class="grid2">
+          <label><span data-u="huruf">Huruf</span><select id="g-font"><option value="" data-u="bawaan">Bawaan template</option></select></label>
+          <label><span data-u="bahasaJudul">Bahasa judul</span><select id="g-judul"></select></label>
         </div>
         <div class="grid2">
-          <label><span data-u="gFont">Huruf</span>
-            <select id="g-font">
-              <option value="" data-u="gBawaan">Bawaan template</option>
-              <option value="sans">Sans (bersih)</option>
-              <option value="humanis">Humanis</option>
-              <option value="serif">Serif (klasik)</option>
-              <option value="mono">Mono</option>
-            </select></label>
-          <label><span data-u="gJudul">Bahasa judul CV</span>
-            <select id="g-judul">
-              <option value="id">Bahasa Indonesia</option>
-              <option value="en">English</option>
-              <option value="zh">中文</option>
-            </select></label>
-          <label><span data-u="gUkuran">Ukuran teks</span>
-            <select id="g-ukuran">
-              <option value="kecil" data-u="uKecil">Kecil</option>
-              <option value="normal" data-u="uNormal">Normal</option>
-              <option value="besar" data-u="uBesar">Besar</option>
-            </select></label>
+          <div><div class="lbl" data-u="warna">Warna aksen</div><div class="swatch" id="swatch"></div></div>
+          <label><span data-u="ukuran">Ukuran teks</span><select id="g-ukuran"><option value="kecil" data-u="uKecil">Kecil</option><option value="normal" data-u="uNormal">Normal</option><option value="besar" data-u="uBesar">Besar</option></select></label>
         </div>
-        <p class="ket-ats" data-u="atsKet">Template bertanda ATS memakai satu kolom: urutan bacanya paling aman untuk sistem penyaring lamaran.</p>
       </div>
+      <div class="tpl-kepala">
+        <h2 data-u="template">Template</h2>
+        <p data-u="tplKet">Miniatur memakai isi CV-mu.</p>
+        <div class="filter" role="group" aria-label="Filter">
+          <button type="button" data-f="semua" aria-pressed="true" data-u="fSemua">Semua</button>
+          <button type="button" data-f="formal" aria-pressed="false" data-u="fFormal">Formal</button>
+          <button type="button" data-f="warna" aria-pressed="false" data-u="fWarna">Berwarna</button>
+          <button type="button" data-f="kreatif" aria-pressed="false" data-u="fKreatif">Kreatif</button>
+          <button type="button" data-f="gelap" aria-pressed="false" data-u="fGelap">Gelap</button>
+          <button type="button" data-f="ats" aria-pressed="false" data-u="fAts">ATS</button>
+        </div>
+        <p class="ket" id="n-desain"></p>
+      </div>
+      <div class="galeri" id="galeri"></div>
     </div>
   </section>
 
   <section class="pratinjau" aria-label="Pratinjau">
     <div class="alat">
-      <span class="info" id="info" aria-live="polite"></span>
+      <div class="tpl-nav">
+        <button type="button" class="ikon" id="tpl-prev" data-al="sebelumnya"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <div class="tpl-label"><small data-u="template">Template</small><b><span id="nav-nama">Modern</span> <span id="nav-no">1 / 40</span></b></div>
+        <button type="button" class="ikon" id="tpl-next" data-al="berikutnya"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
       <div class="alat-ka">
         <div class="menu" id="menu">
-          <button type="button" class="btn" id="menu-btn" aria-haspopup="true" aria-expanded="false"><span data-u="berkas">Berkas</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <button type="button" class="btn" id="menu-btn" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg><span data-u="berkas">Berkas</span></button>
           <div class="menu-isi" id="menu-isi" hidden>
-            <button type="button" id="m-simpan" data-u="mSimpan">Simpan data (.json)</button>
-            <label><input type="file" id="m-buka" accept="application/json,.json" hidden><span data-u="mBuka">Buka data (.json)</span></label>
-            <button type="button" id="m-contoh" data-u="mContoh">Isi dengan contoh</button>
-            <button type="button" id="m-kosong" class="bahaya" data-u="mKosong">Mulai dari kosong</button>
+            <button type="button" id="m-cetak"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><span><span data-u="mCetak">Cetak lewat browser</span><small data-u="mCetakKet">Atau simpan PDF dari dialog cetak</small></span></button>
+            <button type="button" id="m-simpan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3M7 10l5 5 5-5M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg><span data-u="mSimpan">Simpan data ke file (.json)</span></button>
+            <label><input type="file" id="m-buka" accept="application/json,.json" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg><span data-u="mBuka">Buka data dari file</span></label>
+            <button type="button" id="m-contoh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg><span data-u="mContoh">Isi dengan contoh</span></button>
+            <button type="button" id="m-kosong" class="bahaya"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span data-u="mKosong">Mulai dari kosong</span></button>
           </div>
         </div>
-        <button type="button" class="btn" id="unduh-png">PNG</button>
-        <button type="button" class="btn utama" id="unduh-pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="m7 10 5 5 5-5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg><span data-u="unduhPdf">Unduh PDF</span></button>
+        <button type="button" class="btn" id="unduh-png"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg>PNG</button>
+        <button type="button" class="btn utama" id="unduh-pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3M7 10l5 5 5-5M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg><span data-u="unduhPdf">Unduh PDF</span></button>
       </div>
     </div>
-    <div class="kanvas" id="kanvas"><div class="skala" id="skala"><div id="halaman"></div></div></div>
-    <p class="privasi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span data-u="privasi">Semua diproses di browser ini. Data tersimpan otomatis di perangkat Anda dan tidak dikirim ke server.</span></p>
+    <div class="kanvas" id="kanvas">
+      <p class="banner" id="banner"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span data-u="banner"></span></p>
+      <div class="skala" id="skala"><div id="halaman"></div></div>
+      <p class="status"><span id="jml-hal"></span> · <span data-u="tersimpan">Tersimpan otomatis</span></p>
+    </div>
   </section>
 </main>
 
-<button type="button" class="lompat" id="lompat" data-u="lihat">Lihat pratinjau</button>
+<section class="info" id="panduan">
+  <div class="info-dalam">
+    <h2 data-u="gJudul">Cara membuat CV di sini</h2>
+    <ol class="langkah" id="panduan-isi"></ol>
+    <p class="privasi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><span data-u="privasi"></span></p>
+    <h2 id="faq" data-u="faqJudul">Pertanyaan yang sering muncul</h2>
+    <div class="faq" id="faq-isi"></div>
+  </div>
+  <footer class="kaki">© 2026 <a href="https://superfal-dev.com/">superfal-dev.com</a> · Curriculum Vitae</footer>
+</section>
 
-<dialog class="dlg" id="dlg-pdf" aria-labelledby="dlg-pdf-j">
-  <h2 id="dlg-pdf-j" data-u="pdfJ">Simpan sebagai PDF</h2>
-  <ol>
-    <li data-u="pdf1">Di jendela cetak, pilih tujuan <b>Simpan sebagai PDF</b>.</li>
-    <li data-u="pdf2">Kertas <b>A4</b>, margin <b>Tidak ada</b>, skala <b>100%</b>.</li>
-    <li data-u="pdf3">Centang <b>Grafik latar belakang</b> agar warna template ikut.</li>
-  </ol>
-  <p class="kecil" data-u="pdf4">Teks di PDF tetap bisa diseleksi dan dibaca ATS; email dan tautan bisa diklik.</p>
-  <div class="dlg-aksi"><button type="button" class="btn" id="pdf-batal" data-u="batal">Batal</button><button type="button" class="btn utama" id="pdf-lanjut" data-u="lanjutCetak">Buka jendela cetak</button></div>
+<nav class="hp-nav" aria-label="Navigasi">
+  <button type="button" data-ke="data"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.4 3.6a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg><span data-u="hpA">Isi data</span></button>
+  <button type="button" data-ke="tpl"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg><span data-u="hpB">Template</span></button>
+  <button type="button" data-ke="pratinjau"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><span data-u="hpC">Pratinjau</span></button>
+</nav>
+
+<dialog class="dlg" id="dlg-foto" aria-labelledby="dlg-foto-j">
+  <h2 id="dlg-foto-j" data-u="potong">Atur foto</h2>
+  <p class="ket" data-u="potongKet"></p>
+  <div class="potong-bingkai"><canvas id="potong-kanvas" width="480" height="480" tabindex="0" aria-label="Foto"></canvas></div>
+  <label class="zoom"><span data-u="zoom">Zoom</span><input type="range" id="potong-zoom" min="1" max="4" step="0.01" value="1"></label>
+  <div class="dlg-aksi"><button type="button" class="btn" id="potong-batal" data-u="batal">Batal</button><button type="button" class="btn utama" id="potong-pakai" data-u="pakai">Pakai foto</button></div>
 </dialog>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -176,38 +197,45 @@
 
 <template id="tpl-pengalaman">
   <div class="kartu">
-    <div class="kartu-kepala"><b class="kartu-judul"></b><div class="kartu-aksi"><button type="button" data-geser="-1" aria-label="Naik">↑</button><button type="button" data-geser="1" aria-label="Turun">↓</button><button type="button" data-hapus aria-label="Hapus">✕</button></div></div>
+    <div class="kartu-kepala"><b class="kartu-judul"></b><div class="kartu-aksi"><button type="button" data-geser="-1" data-al="naik"><svg viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></svg></button><button type="button" data-geser="1" data-al="turun"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button><button type="button" data-hapus data-al="hapus"><svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button></div></div>
     <div class="grid2">
-      <label><span data-u="posisi">Posisi</span><input data-k="posisi" maxlength="80"></label>
-      <label><span data-u="perusahaan">Perusahaan / instansi</span><input data-k="tempat" maxlength="100"></label>
+      <label><span data-u="posisi">Jabatan</span><input data-k="posisi" maxlength="100"></label>
+      <label><span data-u="perusahaan">Perusahaan / instansi</span><input data-k="tempat" maxlength="120"></label>
       <label><span data-u="mulai">Mulai</span><input data-k="mulai" maxlength="30" data-ph="phMulai"></label>
       <label><span data-u="selesai">Selesai</span><input data-k="selesai" maxlength="30" data-ph="phSelesai"></label>
     </div>
     <label class="cek"><input type="checkbox" data-k="kini"><span data-u="kini">Masih bekerja di sini</span></label>
-    <label><span data-u="deskripsi">Tugas &amp; capaian (satu poin per baris)</span><textarea data-k="deskripsi" rows="3" maxlength="1500"></textarea></label>
+    <label><span data-u="deskripsi">Tugas &amp; pencapaian</span><textarea data-k="deskripsi" rows="3" maxlength="2000"></textarea></label>
   </div>
 </template>
 <template id="tpl-pendidikan">
   <div class="kartu">
-    <div class="kartu-kepala"><b class="kartu-judul"></b><div class="kartu-aksi"><button type="button" data-geser="-1" aria-label="Naik">↑</button><button type="button" data-geser="1" aria-label="Turun">↓</button><button type="button" data-hapus aria-label="Hapus">✕</button></div></div>
+    <div class="kartu-kepala"><b class="kartu-judul"></b><div class="kartu-aksi"><button type="button" data-geser="-1" data-al="naik"><svg viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></svg></button><button type="button" data-geser="1" data-al="turun"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button><button type="button" data-hapus data-al="hapus"><svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button></div></div>
     <div class="grid2">
-      <label><span data-u="gelar">Jurusan / gelar</span><input data-k="posisi" maxlength="100"></label>
-      <label><span data-u="sekolah">Sekolah / kampus</span><input data-k="tempat" maxlength="100"></label>
+      <label><span data-u="gelar">Jurusan / gelar</span><input data-k="posisi" maxlength="120"></label>
+      <label><span data-u="sekolah">Sekolah / kampus</span><input data-k="tempat" maxlength="120"></label>
       <label><span data-u="mulai">Mulai</span><input data-k="mulai" maxlength="30" data-ph="phMulai"></label>
       <label><span data-u="selesai">Selesai</span><input data-k="selesai" maxlength="30" data-ph="phSelesai"></label>
     </div>
     <label class="cek"><input type="checkbox" data-k="kini"><span data-u="kiniStudi">Masih menempuh studi</span></label>
-    <label><span data-u="catatan">Catatan (IPK, organisasi, prestasi)</span><textarea data-k="deskripsi" rows="2" maxlength="800"></textarea></label>
+    <label><span data-u="catatan">Catatan</span><textarea data-k="deskripsi" rows="2" maxlength="1000"></textarea></label>
   </div>
 </template>
 <template id="tpl-proyek">
   <div class="kartu">
-    <div class="kartu-kepala"><b class="kartu-judul"></b><div class="kartu-aksi"><button type="button" data-geser="-1" aria-label="Naik">↑</button><button type="button" data-geser="1" aria-label="Turun">↓</button><button type="button" data-hapus aria-label="Hapus">✕</button></div></div>
+    <div class="kartu-kepala"><b class="kartu-judul"></b><div class="kartu-aksi"><button type="button" data-geser="-1" data-al="naik"><svg viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></svg></button><button type="button" data-geser="1" data-al="turun"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button><button type="button" data-hapus data-al="hapus"><svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button></div></div>
     <div class="grid2">
-      <label><span data-u="namaProyek">Nama proyek</span><input data-k="posisi" maxlength="100"></label>
-      <label><span data-u="tautanProyek">Tautan (opsional)</span><input data-k="tautan" maxlength="200" placeholder="https://" spellcheck="false"></label>
+      <label><span data-u="namaProyek">Nama proyek</span><input data-k="posisi" maxlength="120"></label>
+      <label><span data-u="tautanProyek">Tautan</span><input data-k="tautan" maxlength="200" placeholder="https://" spellcheck="false" autocapitalize="off"></label>
     </div>
-    <label><span data-u="deskripsi2">Deskripsi (satu poin per baris)</span><textarea data-k="deskripsi" rows="2" maxlength="800"></textarea></label>
+    <label><span data-u="deskripsi2">Deskripsi</span><textarea data-k="deskripsi" rows="2" maxlength="1000"></textarea></label>
+  </div>
+</template>
+<template id="tpl-lainnya">
+  <div class="kartu">
+    <div class="kartu-kepala"><b class="kartu-judul"></b><div class="kartu-aksi"><button type="button" data-geser="-1" data-al="naik"><svg viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></svg></button><button type="button" data-geser="1" data-al="turun"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button><button type="button" data-hapus data-al="hapus"><svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button></div></div>
+    <label><span data-u="judulBagian">Judul bagian</span><input data-k="judul" maxlength="80"></label>
+    <label><span data-u="isiBagian">Isi (satu poin per baris)</span><textarea data-k="isi" rows="3" maxlength="2000"></textarea></label>
   </div>
 </template>
 
