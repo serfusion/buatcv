@@ -6,6 +6,7 @@
 <title>Curriculum Vitae · Buat CV gratis</title>
 <meta name="description" content="Buat CV gratis di browser: 40 template A4, pratinjau langsung, unduh PDF yang terbaca ATS atau PNG. Tanpa daftar, data tidak dikirim ke server.">
 <meta name="theme-color" content="#f7f4ee">
+<meta name="color-scheme" content="only light">
 <link rel="canonical" href="https://superfal-dev.com/tools/buatcvgratis/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231f3a8a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Ccircle cx='12' cy='12' r='2.5'/%3E%3Cpath d='M8 18a4 4 0 0 1 8 0'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="fonts.css">
@@ -32,6 +33,7 @@
     <div class="tabs" role="tablist">
       <button type="button" role="tab" id="tab-data" aria-controls="p-data" aria-selected="true"><i>1</i><span data-u="tData">Isi data</span></button>
       <button type="button" role="tab" id="tab-tpl" aria-controls="p-tpl" aria-selected="false"><i>2</i><span data-u="tTpl">Template</span></button>
+      <button type="button" role="tab" id="tab-pra" aria-controls="pratinjau" aria-selected="false" class="hp-saja"><i>3</i><span data-u="tPra">Pratinjau</span></button>
     </div>
 
     <form id="p-data" role="tabpanel" aria-labelledby="tab-data" class="panel" autocomplete="on" novalidate>
@@ -106,7 +108,7 @@
           </div>
         </div>
       </div>
-      <div class="panel-kaki"><button type="button" class="btn utama lebar" id="ke-tpl"><span data-u="lanjut">Lanjut pilih template</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+      <div class="cta"><p data-u="ctaKet">Sudah terisi? Pilih desain yang cocok, lalu unduh.</p><button type="button" class="btn utama" id="ke-tpl"><span data-u="lanjut">Lanjut pilih template</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
     </form>
 
     <div id="p-tpl" role="tabpanel" aria-labelledby="tab-tpl" class="panel" hidden>
@@ -134,17 +136,17 @@
         <p class="ket" id="n-desain"></p>
       </div>
       <div class="galeri" id="galeri"></div>
+      <div class="cta hp-saja"><p data-u="ctaTpl">Desain sudah dipilih? Lihat hasilnya, lalu unduh.</p><button type="button" class="btn utama" id="ke-pra"><span data-u="lihatPra">Lihat pratinjau</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
     </div>
   </section>
 
-  <section class="pratinjau" aria-label="Pratinjau">
-    <div class="alat">
+  <div class="alat">
       <div class="tpl-nav">
         <button type="button" class="ikon" id="tpl-prev" data-al="sebelumnya"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
         <div class="tpl-label"><small data-u="template">Template</small><b><span id="nav-nama">Modern</span> <span id="nav-no">1 / 40</span></b></div>
         <button type="button" class="ikon" id="tpl-next" data-al="berikutnya"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
       </div>
-      <div class="alat-ka">
+      <div class="aksi">
         <div class="menu" id="menu">
           <button type="button" class="btn" id="menu-btn" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg><span data-u="berkas">Berkas</span></button>
           <div class="menu-isi" id="menu-isi" hidden>
@@ -159,10 +161,11 @@
         <button type="button" class="btn utama" id="unduh-pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3M7 10l5 5 5-5M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg><span data-u="unduhPdf">Unduh PDF</span></button>
       </div>
     </div>
+  <section class="pratinjau" id="pratinjau" role="tabpanel" aria-labelledby="tab-pra" aria-label="Pratinjau">
     <div class="kanvas" id="kanvas">
       <p class="banner" id="banner"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span data-u="banner"></span></p>
       <div class="skala" id="skala"><div id="halaman"></div></div>
-      <p class="status"><span id="jml-hal"></span> · <span data-u="tersimpan">Tersimpan otomatis</span></p>
+      <p class="status"><span><i></i><span id="jml-hal"></span></span><span><i></i><span data-u="tersimpan">Tersimpan otomatis di browser ini</span></span></p>
     </div>
   </section>
 </main>
@@ -178,11 +181,6 @@
   <footer class="kaki">© 2026 <a href="https://superfal-dev.com/">superfal-dev.com</a> · Curriculum Vitae</footer>
 </section>
 
-<nav class="hp-nav" aria-label="Navigasi">
-  <button type="button" data-ke="data"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.4 3.6a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg><span data-u="hpA">Isi data</span></button>
-  <button type="button" data-ke="tpl"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg><span data-u="hpB">Template</span></button>
-  <button type="button" data-ke="pratinjau"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><span data-u="hpC">Pratinjau</span></button>
-</nav>
 
 <dialog class="dlg" id="dlg-foto" aria-labelledby="dlg-foto-j">
   <h2 id="dlg-foto-j" data-u="potong">Atur foto</h2>

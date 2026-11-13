@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import zlib from 'node:zlib';
+import crypto from 'node:crypto';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { build, transform } from 'esbuild';
@@ -52,11 +53,20 @@ for (const f of ['style.css', 'cv.css']) {
   fs.writeFileSync(path.join(DIST, f), css.code);
 }
 
-// 4. HTML (spasi antar-tag dirapikan) + html2canvas (MIT)
-fs.writeFileSync(path.join(DIST, 'index.html'), fs.readFileSync(path.join(SRC, 'index.html'), 'utf8').replace(/\n\s+</g, '\n<'));
+// 4. html2canvas (MIT)
 const h2c = require.resolve('html2canvas/dist/html2canvas.min.js');
 fs.copyFileSync(h2c, path.join(DIST, 'vendor', 'html2canvas.min.js'));
 fs.copyFileSync(path.join(path.dirname(h2c), '..', 'LICENSE'), path.join(DIST, 'vendor', 'html2canvas.LICENSE.txt'));
+
+// 5. HTML: spasi antar-tag dirapikan, dan setiap CSS/JS diberi ?v=<sidik isi> (cache-busting).
+//    Server mengirim CSS/JS dengan cache 4 jam; tanpa ini browser bisa memakai CSS/JS lama dengan HTML baru.
+const sidik = f => crypto.createHash('sha256').update(fs.readFileSync(path.join(DIST, f))).digest('hex').slice(0, 10);
+let html = fs.readFileSync(path.join(SRC, 'index.html'), 'utf8').replace(/\n\s+</g, '\n<');
+html = html.replace(/(href|src)="((?:vendor\/)?[\w.-]+\.(?:css|js))"/g, (m, attr, f) => {
+  if (!fs.existsSync(path.join(DIST, f))) throw new Error('aset tidak ada: ' + f);
+  return `${attr}="${f}?v=${sidik(f)}"`;
+});
+fs.writeFileSync(path.join(DIST, 'index.html'), html);
 
 let total = 0, n = 0;
 for (const f of fs.readdirSync(DIST, { recursive: true })) { const s = fs.statSync(path.join(DIST, f)); if (s.isFile()) { total += s.size; n++; } }

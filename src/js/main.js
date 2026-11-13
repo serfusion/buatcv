@@ -95,7 +95,8 @@ function render() {
   galeriNanti();
 }
 function sesuaikan() {
-  const w = kanvas.clientWidth - (innerWidth < 700 ? 16 : 48), s = Math.min(1, w / W);
+  const cs = getComputedStyle(kanvas);
+  const w = kanvas.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight), s = Math.min(1, w / W);
   skala.style.setProperty('--s', s.toFixed(4));
   skala.style.width = W * s + 'px';
   skala.style.height = halamanEl.offsetHeight * s + 'px';
@@ -126,9 +127,10 @@ function renderGaleri() {
 }
 const skalaMini = () => $$('.mini-k').forEach(k => $('.mini-s', k).style.setProperty('--ms', (k.clientWidth / W).toFixed(4)));
 new ResizeObserver(skalaMini).observe($('#galeri'));
-function pilihTemplate(id) {
+function pilihTemplate(id, dariGaleri) {
   data.gaya.template = id;
   swatch(); simpan(); render();
+  if (dariGaleri && hp.matches) toast(`${cariTemplate(id).nama} · ${u('dipakai')}`);
   $$('.mini').forEach(x => {
     const on = x.dataset.id === id;
     x.setAttribute('aria-pressed', String(on));
@@ -136,7 +138,7 @@ function pilihTemplate(id) {
     if (on) $('.mini-n', x).insertAdjacentHTML('beforeend', `<b>${esc(u('dipakai'))}</b>`);
   });
 }
-$('#galeri').addEventListener('click', e => { const b = e.target.closest('.mini'); if (b) pilihTemplate(b.dataset.id); });
+$('#galeri').addEventListener('click', e => { const b = e.target.closest('.mini'); if (b) pilihTemplate(b.dataset.id, true); });
 $$('.filter button').forEach(b => b.addEventListener('click', () => {
   filter = b.dataset.f;
   $$('.filter button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
@@ -311,30 +313,34 @@ $('#g-font').addEventListener('change', e => { data.gaya.font = e.target.value; 
 $('#g-judul').addEventListener('change', e => { data.gaya.judul = e.target.value; simpan(); render(); });
 $('#g-ukuran').addEventListener('change', e => { data.gaya.ukuran = e.target.value; simpan(); render(); });
 
-/* ---------------- tab editor + navigasi HP ---------------- */
-function bukaTab(id) {
-  $$('.tabs [role=tab]').forEach(t => { const on = t.id === id; t.setAttribute('aria-selected', String(on)); $('#' + t.getAttribute('aria-controls')).hidden = !on; });
+/* ---------------- tab: 1 Isi data, 2 Template, 3 Pratinjau (tab ke-3 hanya di HP) ---------------- */
+const hp = matchMedia('(max-width: 860px)');
+const tabTerlihat = () => $$('.tabs [role=tab]').filter(t => t.offsetParent);
+function bukaTab(id, gulir) {
+  if (id === 'tab-pra' && !hp.matches) id = 'tab-data';
+  $$('.tabs [role=tab]').forEach(t => {
+    const on = t.id === id;
+    t.setAttribute('aria-selected', String(on));
+    t.tabIndex = on ? 0 : -1;
+    if (t.id !== 'tab-pra') $('#' + t.getAttribute('aria-controls')).hidden = !on;
+  });
+  document.body.dataset.tab = id.slice(4);
   if (id === 'tab-tpl') renderGaleri();
-  hpTanda();
+  if (id === 'tab-pra') sesuaikan();
+  if (gulir) {
+    if (hp.matches) scrollTo({ top: Math.min(scrollY, $('.editor').offsetTop), behavior: 'smooth' });
+    else $('.editor').scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
-$$('.tabs [role=tab]').forEach(t => t.addEventListener('click', () => bukaTab(t.id)));
+$$('.tabs [role=tab]').forEach(t => t.addEventListener('click', () => bukaTab(t.id, true)));
 $('.tabs').addEventListener('keydown', e => {
   if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
-  const t = $$('.tabs [role=tab]'), j = (t.indexOf(document.activeElement) + 1) % 2;
+  const t = tabTerlihat(), j = (t.indexOf(document.activeElement) + (e.key === 'ArrowRight' ? 1 : -1) + t.length) % t.length;
   t[j].focus(); bukaTab(t[j].id);
 });
-$('#ke-tpl').addEventListener('click', () => { bukaTab('tab-tpl'); $('.editor').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
-let diPratinjau = false;
-new IntersectionObserver(es => { diPratinjau = es[0].isIntersecting && es[0].intersectionRatio > 0.25; hpTanda(); }, { threshold: [0, 0.25, 0.5] }).observe($('.pratinjau'));
-function hpTanda() {
-  const aktif = diPratinjau ? 'pratinjau' : ($('#p-tpl').hidden ? 'data' : 'tpl');
-  $$('.hp-nav button').forEach(b => b.setAttribute('aria-current', String(b.dataset.ke === aktif)));
-}
-$$('.hp-nav button').forEach(b => b.addEventListener('click', () => {
-  if (b.dataset.ke === 'pratinjau') { $('.pratinjau').scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
-  bukaTab(b.dataset.ke === 'tpl' ? 'tab-tpl' : 'tab-data');
-  $('.editor').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}));
+$('#ke-tpl').addEventListener('click', () => bukaTab('tab-tpl', true));
+$('#ke-pra').addEventListener('click', () => bukaTab('tab-pra', true));
+hp.addEventListener('change', () => { if (!hp.matches && document.body.dataset.tab === 'pra') bukaTab('tab-data'); sesuaikan(); });
 
 /* ---------------- menu berkas ---------------- */
 const menuBtn = $('#menu-btn'), menuIsi = $('#menu-isi');

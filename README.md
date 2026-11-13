@@ -12,7 +12,9 @@ Alat buat CV gratis yang berjalan penuh di browser. Live: https://superfal-dev.c
   jadi PDF tampak persis seperti pratinjau tetapi teksnya bisa dicari, disalin, dan dibaca ATS; email/telepon/tautan bisa diklik;
   nama, jabatan, dan keahlian masuk metadata PDF. Penulis PDF ditulis sendiri (`src/js/pdf.js`).
 - **PNG** 1588 × 2244 px per halaman, **cetak lewat browser**, **simpan / buka .json**, simpan otomatis di `localStorage`.
-- Antarmuka ID / EN, tampilan HP dengan navigasi bawah, mode gelap mengikuti sistem. Tidak ada server, iklan, atau pendaftaran.
+- **Tata letak seperti alat CV populer**: di desktop formulir (kiri) dan kertas (kanan) bergulir sendiri-sendiri; di HP ada tab
+  1 Isi data · 2 Template · 3 Pratinjau dan bilah Berkas / PNG / Unduh PDF yang selalu di bawah. Tema terang (juga saat HP memakai mode gelap).
+- Antarmuka ID / EN. Tidak ada server, iklan, atau pendaftaran.
 
 ## Build
 
@@ -22,7 +24,7 @@ npm run build      # src/ -> dist/ (index.html, app.js, *.css, fonts/, vendor/)
 npm run dev        # build lalu sajikan dist/ di http://localhost:8080
 ```
 
-`dist/` berisi file statis saja. Di superfal-dev.com hasilnya disalin ke
+`dist/` berisi file statis saja. Setiap CSS/JS di `index.html` diberi `?v=<sidik isi>` supaya browser tidak memakai versi lama dari cache. Di superfal-dev.com hasilnya disalin ke
 `serfusion/portofolio` → `projects/portofolio/tools/buatcvgratis/`.
 
 | File | Isi |
