@@ -1,0 +1,14 @@
+{
+  "name": "buatcv",
+  "private": true,
+  "type": "module",
+  "description": "Buat CV Generator: alat buat CV gratis yang berjalan penuh di browser (statis).",
+  "scripts": {
+    "build": "node bangun.mjs",
+    "dev": "node bangun.mjs && python3 -m http.server 8080 -d dist"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.10",
+    "html2canvas": "1.4.1"
+  }
+}
