@@ -1,4 +1,4 @@
-# Buat Curriculum Vitae - CV
+# Curriculum Vitae
 
 Alat buat CV gratis yang berjalan penuh di browser. Live: https://superfal-dev.com/tools/buatcvgratis/
 
